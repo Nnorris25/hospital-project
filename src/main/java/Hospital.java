@@ -1,3 +1,4 @@
+import java.util.Collection;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -5,15 +6,20 @@ public class Hospital {
 	Map<String, Employee> highStHospitalEmployees = new HashMap<>();
 	Map<String, Patient> highStHospitalPatients = new HashMap<>();
 
-	// add employees
-	// total amount of employees
-	// remove patients
-	// remove employees
-	// total amount of patients
-	// status of employees
-
+	public Collection<Patient> getPatients()
+	{
+		return highStHospitalPatients.values();
+	}
+	
+	public String listPatientNamesAndIDs() {
+		String status = "";
+		for (Patient patient : getPatients()) {
+			status +=  patient.getPatientID() + " " + patient.getPatientName() + "\n";
+		}
+		return status;		
+	}
+	
 	public int getPatientCount() {
-
 		return highStHospitalPatients.size();
 	}
 
@@ -23,5 +29,31 @@ public class Hospital {
 
 	public void removePatientId(String patientId) {
 		highStHospitalPatients.remove(patientId);
+	}
+
+	public int getEmployeeCount() {
+		return highStHospitalEmployees.size();
+	}
+
+	public void addEmployee(Employee employee) {
+		highStHospitalEmployees.put(employee.getEmployeeNumber(), employee);
+
+	}
+
+	public void removeEmployeeNumber(String employeeNumber) {
+		highStHospitalEmployees.remove(employeeNumber);
+
+	}
+
+	public String listEmployeesNamesAndIDs() {
+		String status = "";
+		for (Employee employee : listEmployees()) {
+			status +=  employee.getEmployeeNumber() + "\t" + employee.getName() + "\n";
+		}
+		return status;		
+	}
+
+	public Collection<Employee> listEmployees() {
+		return highStHospitalEmployees.values();
 	}
 }

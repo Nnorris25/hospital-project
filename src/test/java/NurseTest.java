@@ -20,7 +20,7 @@ public class NurseTest {
 	@Test
 	public void careForPatientsShouldIncreasePatientHealth() {
 		//Arrange
-		Patient patient = new Patient();
+		Patient patient = new Patient("777", "Timmy");
 		//Act
 		int patientHealthBeforeCare = patient.getHealthLevel();
 		jackie.careForPatient(patient);

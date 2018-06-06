@@ -1,12 +1,11 @@
 
 public class Janitor extends Employee {
 	private boolean isSweeping;
-	
+
 	public Janitor(String name, String employeeNumber, int salary, boolean isSweeping) {
 		super(name, employeeNumber, salary);
-	this.isSweeping = isSweeping;
-	
-	
+		this.isSweeping = isSweeping;
+
 	}
 
 	public boolean isSweeping() {
@@ -16,7 +15,11 @@ public class Janitor extends Employee {
 
 	public void toggleIsSweeping() {
 		isSweeping = !isSweeping;
-		
+
 	}
 
+	@Override
+	public String toString() {
+		return getName() + " " + getEmployeeNumber() + " " + isSweeping();
+	}
 }

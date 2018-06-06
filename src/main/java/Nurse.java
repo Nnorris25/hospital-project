@@ -16,4 +16,8 @@ public class Nurse extends Employee implements CareForPatient {
 		patient.heal(5);
 	}
 
+	@Override
+	public String toString() {
+		return getName() + " " + getEmployeeNumber() + " " + getNumberOfPatients();
+	}
 }

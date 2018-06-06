@@ -5,11 +5,8 @@ public class Surgeon extends Doctor {
 	
 	public Surgeon(String name, String employeeNumber, String specialty, int salary, boolean isOperating) {
 		super(name, employeeNumber, specialty, salary);
-	
 		this.isOperating = isOperating;
-		
 	}
-
 	public boolean isOperating() {
 		return isOperating;
 	}
@@ -18,6 +15,8 @@ public class Surgeon extends Doctor {
 		isOperating = !isOperating;
 	}
 	
-	
-
+	@Override
+	public String toString() {
+		return getName() + " " + getEmployeeNumber() + " " + getSpecialty() + " " + isOperating();
+	}
 }

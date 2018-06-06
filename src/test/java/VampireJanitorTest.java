@@ -9,7 +9,7 @@ VampireJanitor cain = new VampireJanitor("Cain", "0000", 61003, false);
 @Test
 public void suckBloodShouldDecreaseBloodLevel() {
 	//arrange
-	Patient patient = new Patient (25, 25);
+	Patient patient = new Patient("777", "Timmy");
 	int patientBloodBeforeBloodSuck = patient.getBloodLevel();
 	
 	//act

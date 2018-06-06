@@ -24,8 +24,9 @@ public class Patient {
 		return healthLevel;
 	}
 
-	public Patient() {
-		
+	public Patient(String patientId, String patientName) {
+		this.patientId = patientId;
+		this.patientName = patientName;
 	}
 
 	public Patient(String patientId, String patientName, int bloodLevel, int healthLevel) {

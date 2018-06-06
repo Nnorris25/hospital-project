@@ -7,7 +7,7 @@ public abstract class Employee {
 	public Employee(String name, String employeeNumber, int salary) {
 		this.name = name;
 		this.employeeNumber = employeeNumber;
-		this.salary =salary;
+		this.salary = salary;
 	}
 
 	public String getName() {
@@ -19,7 +19,11 @@ public abstract class Employee {
 	}
 
 	public int calculatePay() {
-	return salary;
-		
+		return salary;
+	}
+	
+	@Override
+	public String toString() {
+		return getName() + " " + getEmployeeNumber();
 	}
 }

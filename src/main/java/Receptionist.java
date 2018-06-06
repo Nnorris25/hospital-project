@@ -20,4 +20,8 @@ public class Receptionist extends Employee {
 		isOnPhone = !isOnPhone;
 	}
 
+	@Override
+	public String toString() {
+		return getName() + " " + getEmployeeNumber() + " " + isOnPhone();
+	}
 }

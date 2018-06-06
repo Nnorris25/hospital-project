@@ -5,7 +5,8 @@ import org.junit.Test;
 
 public class HospitalTest {
 	Hospital hospital = new Hospital();
-	Patient patientOne = new Patient();
+	Patient patientOne = new Patient("777", "Timmy");
+	Employee employeeOne = new Doctor("phil", "3333", "Heart", 90000);
 
 	@Test
 	public void shouldAddPatient() {
@@ -30,6 +31,42 @@ public class HospitalTest {
 		int countAfterRemovingPatient = hospital.getPatientCount();
 		// assert
 		assertThat(countAfterRemovingPatient, is(equalTo(countBeforeRemovingPatient-1)));
+	}
+	@Test
+	public void shouldAddEmployees() {
+		//arrange
+		int beforeAddingEmployee = hospital.getEmployeeCount();
+		// act
+		hospital.addEmployee(employeeOne);
+		int afterAddingEmployee = hospital.getEmployeeCount();
+
+		// asset
+
+		assertThat(afterAddingEmployee, is(equalTo(beforeAddingEmployee + 1)));
+		
+	}
+	@Test
+	public void shouldRemoveEmployee() {
+		// arrange
+		hospital.addEmployee(employeeOne);
+		int countBeforeRemovingEmployee = hospital.getEmployeeCount();
+		// act
+		hospital.removeEmployeeNumber(employeeOne.getEmployeeNumber());
+		int countAfterRemovingEmployee = hospital.getEmployeeCount();
+		// assert
+		assertThat(countAfterRemovingEmployee, is(equalTo(countBeforeRemovingEmployee-1)));
+	}
+	@Test
+	public void shouldListAllEmployees() {
+		//arrange
+		hospital.listEmployees();
+		//act
+		
+		//assert
+		
+		
+		
+		
 	}
 
 }
