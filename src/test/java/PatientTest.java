@@ -37,7 +37,7 @@ public class PatientTest {
 	@Test
 	public void shouldHavePatientId() {
 		//Arrange
-		String patientId = patient.getPatientID();
+		String patientId = patient.getPatientId();
 		
 		//Act
 		

@@ -1,10 +1,10 @@
 
 public class VampireJanitor extends Janitor implements DrawBlood {
-	private int bloodThirsty;
+	private int bloodThirst;
 
-	public VampireJanitor(String name, String employeeNumber, int salary, boolean isSweeping) {
+	public VampireJanitor(String name, String employeeNumber, int salary, boolean isSweeping, int bloodThirst) {
 		super(name, employeeNumber, salary, isSweeping);
-		this.bloodThirsty = bloodThirsty;
+		this.bloodThirst = bloodThirst;
 	}
 
 	@Override
@@ -15,8 +15,12 @@ public class VampireJanitor extends Janitor implements DrawBlood {
 
 	public void suckBlood(Patient patient) {
 		drawBlood(patient);
-		bloodThirsty -= 2;
+		bloodThirst -= 2;
 
+	}
+
+	public int getBloodThirst() {
+		return bloodThirst;
 	}
 
 }

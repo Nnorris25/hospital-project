@@ -27,7 +27,7 @@ public class HospitalTest {
 		hospital.addPatient(patientOne);
 		int countBeforeRemovingPatient = hospital.getPatientCount();
 		// act
-		hospital.removePatientId(patientOne.getPatientID());
+		hospital.removePatientId(patientOne.getPatientId());
 		int countAfterRemovingPatient = hospital.getPatientCount();
 		// assert
 		assertThat(countAfterRemovingPatient, is(equalTo(countBeforeRemovingPatient-1)));

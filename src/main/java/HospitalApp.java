@@ -1,34 +1,24 @@
 import java.util.Scanner;
 
 public class HospitalApp {
+	static Scanner input = new Scanner(System.in);
+	static Hospital highStHospital = new Hospital();
 
 	public static void main(String[] args) {
-		Scanner input = new Scanner(System.in);
 
-		Hospital highStHospital = new Hospital();
-		Employee phil = new Doctor("Phil", "3333", "Heart", 90000);
-		Employee kelly = new Doctor("Kelly", "444", "Heart", 90000);
-		Employee jackie = new Nurse("Jackie", "222", 6, 45000);
-		Employee joanne = new Nurse("Joanne", "666", 4, 450_000);
-		Employee john = new Janitor("John", "35", 40_000, true);
-		Employee amal = new Receptionist("Amal", "30", 40_000, true);
-		Employee nate = new Surgeon("Nate", "25", "Brain", 10_000, false);
 
-		Patient andy = new Patient("88", "Andy");
-		Patient maulik = new Patient("99", "Maulik");
-		Patient kevin = new Patient("77", "Kevin");
+		highStHospital.addEmployee(new Doctor("Phil", "3333", "Heart", 90000));
+		highStHospital.addEmployee(new Nurse("Jackie", "222", 6, 45000));
+		highStHospital.addEmployee(new Doctor("Kelly", "444", "Heart", 90000));
+		highStHospital.addEmployee(new Nurse("Joanne", "666", 4, 450_000));
+		highStHospital.addEmployee(new Janitor("John", "35", 40_000, true));
+		highStHospital.addEmployee(new Receptionist("Amal", "30", 40_000, true));
+		highStHospital.addEmployee(new Surgeon("Nate", "25", "Brain", 10_000, false));
+		highStHospital.addEmployee(new VampireJanitor("Lil Jon", "21494", 1_000_000, false, 20));
 
-		highStHospital.addEmployee(phil);
-		highStHospital.addEmployee(jackie);
-		highStHospital.addEmployee(kelly);
-		highStHospital.addEmployee(joanne);
-		highStHospital.addEmployee(john);
-		highStHospital.addEmployee(amal);
-		highStHospital.addEmployee(nate);
-
-		highStHospital.addPatient(andy);
-		highStHospital.addPatient(maulik);
-		highStHospital.addPatient(kevin);
+		highStHospital.addPatient(new Patient("88", "Andy"));
+		highStHospital.addPatient(new Patient("99", "Maulik"));
+		highStHospital.addPatient(new Patient("77", "Kevin"));
 
 		System.out.println("Welcome to HighStreet Hopsital \nWhat would you like to do today?\n");
 		hospitalOptions();
@@ -37,7 +27,7 @@ public class HospitalApp {
 		switch (userInput) {
 		case "1":
 			// print all employees
-			System.out.println(highStHospital.listEmployeesNamesAndIDs());
+			System.out.println(highStHospital.listEmployeesNamesAndIds());
 			break;
 		case "2":
 			// adding new employee
@@ -48,86 +38,73 @@ public class HospitalApp {
 			String newEmployeeName = input.nextLine();
 			System.out.println("What ID number do you want to assign the employee?");
 			String newEmployeeIDNumber = input.nextLine();
-			typeOfEmployeeToAdd(input, highStHospital, typeOfEmployeeToAdd, newEmployeeName, newEmployeeIDNumber);
+			typeOfEmployeeToAdd(typeOfEmployeeToAdd, newEmployeeName, newEmployeeIDNumber);
 			break;
 		case "3":
-			System.out.println(highStHospital.listEmployeesNamesAndIDs());
+			System.out.println(highStHospital.listEmployeesNamesAndIds());
 			System.out.println("Which employee deserves to be fired? Please enter their ID number.");
-			String employeeIDToFire = input.nextLine();
+			String employeeIdToFire = input.nextLine();
 
-			if (highStHospital.highStHospitalEmployees.containsKey(employeeIDToFire)) {
-				Employee employeeToFire = highStHospital.highStHospitalEmployees.get(employeeIDToFire);
-				highStHospital.highStHospitalEmployees.remove(employeeToFire.getEmployeeNumber());
-				System.out.println(employeeToFire.getName() + " was secretly Hitler!\n");
-			}
+			System.out.println(highStHospital.getHighStHospitalEmployees().get(employeeIdToFire) + " was secretly Hitler!\n");
+			highStHospital.highStHospitalEmployees.remove(employeeIdToFire);
 
-			System.out.println(highStHospital.listEmployeesNamesAndIDs());
+			System.out.println(highStHospital.listEmployeesNamesAndIds());
 			break;
 		case "4":
-			// grab patients
-			System.out.println(highStHospital.listPatientNamesAndIDs());
+			System.out.println(highStHospital.listPatientNamesAndIds());
 			break;
 		case "5":
 			System.out.println("What is the name of the new patient?");
 			String newPatientName = input.nextLine();
 			System.out.println("What ID number do you want to assign the patient?");
-			String newPatientIDNumber = input.nextLine();
-			Patient newPatient = new Patient(newPatientIDNumber, newPatientName);
+			String newPatientIdNumber = input.nextLine();
+			Patient newPatient = new Patient(newPatientIdNumber, newPatientName);
 			highStHospital.addPatient(newPatient);
-			System.out.println(highStHospital.listPatientNamesAndIDs());
+			System.out.println(highStHospital.listPatientNamesAndIds());
 			break;
 		case "6":
-			System.out.println(highStHospital.listPatientNamesAndIDs());
+			System.out.println(highStHospital.listPatientNamesAndIds());
 			System.out.println("Which patient is too old? Please enter their ID number.");
 			String patientToKillLegally = input.nextLine();
 
-			if (highStHospital.highStHospitalPatients.containsKey(patientToKillLegally)) {
-				Patient patientToKill = highStHospital.highStHospitalPatients.get(patientToKillLegally);
-				highStHospital.highStHospitalPatients.remove(patientToKill.getPatientID());
-				System.out.println(patientToKill.getPatientName() + " has been killed!\n");
-			}
+			System.out.println(highStHospital.getHighStHospitalPatients().get(patientToKillLegally) + " has been killed!\n");
+			highStHospital.highStHospitalPatients.remove(patientToKillLegally);
 
-			System.out.println(highStHospital.listPatientNamesAndIDs());
+			System.out.println(highStHospital.listPatientNamesAndIds());
 			break;
 		case "7":
 			System.out.println(
 					"Please enter the ID number of the employee to check on. This will list if they're busy or not.");
-			String employeeIDNumberToCheck = input.nextLine();
-			// employeeID numbers that return a boolean value
-			// 25, 30, 35
-			if (highStHospital.highStHospitalEmployees.containsKey(employeeIDNumberToCheck)) {
-				Employee employeeToCheck = highStHospital.highStHospitalEmployees.get(employeeIDNumberToCheck);
-				if (employeeToCheck instanceof Surgeon) {
-					System.out.println(
-							employeeToCheck.getName() + " is busy. " + ((Surgeon) employeeToCheck).isOperating());
-				} else if (employeeToCheck instanceof Janitor) {
-					System.out.println(
-							employeeToCheck.getName() + " is busy. " + ((Janitor) employeeToCheck).isSweeping());
-				} else if (employeeToCheck instanceof Receptionist) {
-					System.out.println(
-							employeeToCheck.getName() + " is busy. " + ((Receptionist) employeeToCheck).isOnPhone());
-				} else {
-					System.out.println(employeeToCheck.getName() + " is not busy.");
-				}
+			String employeeIdNumberToCheck = input.nextLine();
+			Employee employeeToCheck = highStHospital.highStHospitalEmployees.get(employeeIdNumberToCheck);
+			if (employeeToCheck instanceof Surgeon) {
+				System.out.println(
+						employeeToCheck.getName() + " is busy. " + ((Surgeon) employeeToCheck).isOperating());
+			} else if (employeeToCheck instanceof Janitor) {
+				System.out.println(
+						employeeToCheck.getName() + " is busy. " + ((Janitor) employeeToCheck).isSweeping());
+			} else if (employeeToCheck instanceof Receptionist) {
+				System.out.println(
+						employeeToCheck.getName() + " is busy. " + ((Receptionist) employeeToCheck).isOnPhone());
 			} else {
-				System.out.println("EmployeeID number " + employeeIDNumberToCheck + " does not exist in hospital.");
+				System.out.println(employeeToCheck.getName() + " is not busy.");
 			}
 			break;
 		case "8":
-			System.out.println(highStHospital.listEmployeesNamesAndIDs());
+			System.out.println(highStHospital.listEmployeesNamesAndIds());
 			System.out.println("Which employee do you want to search for? Please enter their ID");
 			String employeeToSearchFor = input.nextLine();
 
-			if (highStHospital.highStHospitalEmployees.containsKey(employeeToSearchFor)) {
-				Employee foundEmployee = highStHospital.highStHospitalEmployees.get(employeeToSearchFor);
-				System.out.println(foundEmployee.toString());
-			}
+			System.out.println(highStHospital.highStHospitalEmployees.get(employeeToSearchFor));
 
 			break;
 		case "9":
-			System.out.println("You're shift is over.");
+			System.out.println("You are healthy now. Or dead...");
 			System.exit(0);
 			break;
+		case "666":
+			System.out.println("Don't check on the vampire stupid.");
+			System.out.println("Lil Jons blood thirst is currently: " + ((VampireJanitor) highStHospital.getHighStHospitalEmployees().get("21494")).getBloodThirst());
 		default:
 			break;
 		}
@@ -136,8 +113,7 @@ public class HospitalApp {
 
 	}
 
-	private static void typeOfEmployeeToAdd(Scanner input, Hospital highStHospital, String typeOfEmployeeToAdd,
-			String newEmployeeName, String newEmployeeIDNumber) {
+	private static void typeOfEmployeeToAdd(String typeOfEmployeeToAdd, String newEmployeeName, String newEmployeeIDNumber) {
 		// 1 == Doctor, 2 == Surgeon, 3 == Nurse, 4 == Receptionist, 5 == Janitor
 		switch (typeOfEmployeeToAdd) {
 		case "1":
@@ -175,7 +151,7 @@ public class HospitalApp {
 				+ "Press 3. To fire an employee\r\n" + "Press 4. To for a list of patients\r\n"
 				+ "Press 5. To admit a new patient\r\n" + "Press 6. To kill a patient\r\n"
 				+ "Press 7. To check if a employee id on busy\r\n" + "Press 8. To search for employee\r\n"
-				+ "Press 9. To leave the hospital\r\n" + "Press 666. To check if the vampire is blood thirsty");
+				+ "Press 9. To leave the hospital\r\n" + "Press 666. To check the blood thirst of Lil Jon");
 
 	}
 

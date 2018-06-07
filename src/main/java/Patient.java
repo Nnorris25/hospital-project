@@ -47,13 +47,18 @@ public class Patient {
 
 	}
 
-	public String getPatientID() {
+	public String getPatientId() {
 		return patientId;
 		
 	}
 
 	public String getPatientName() {
 		return patientName;
+	}
+
+	@Override
+	public String toString() {
+		return getPatientName() + " " + getPatientId();
 	}
 
 	

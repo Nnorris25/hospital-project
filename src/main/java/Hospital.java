@@ -11,10 +11,10 @@ public class Hospital {
 		return highStHospitalPatients.values();
 	}
 	
-	public String listPatientNamesAndIDs() {
+	public String listPatientNamesAndIds() {
 		String status = "";
 		for (Patient patient : getPatients()) {
-			status +=  patient.getPatientID() + " " + patient.getPatientName() + "\n";
+			status +=  patient.getPatientId() + " " + patient.getPatientName() + "\n";
 		}
 		return status;		
 	}
@@ -24,7 +24,7 @@ public class Hospital {
 	}
 
 	public void addPatient(Patient patient) {
-		highStHospitalPatients.put(patient.getPatientID(), patient);
+		highStHospitalPatients.put(patient.getPatientId(), patient);
 	}
 
 	public void removePatientId(String patientId) {
@@ -45,7 +45,7 @@ public class Hospital {
 
 	}
 
-	public String listEmployeesNamesAndIDs() {
+	public String listEmployeesNamesAndIds() {
 		String status = "";
 		for (Employee employee : listEmployees()) {
 			status +=  employee.getEmployeeNumber() + "\t" + employee.getName() + "\n";
@@ -55,5 +55,13 @@ public class Hospital {
 
 	public Collection<Employee> listEmployees() {
 		return highStHospitalEmployees.values();
+	}
+
+	public Map<String, Employee> getHighStHospitalEmployees() {
+		return highStHospitalEmployees;
+	}
+
+	public Map<String, Patient> getHighStHospitalPatients() {
+		return highStHospitalPatients;
 	}
 }
